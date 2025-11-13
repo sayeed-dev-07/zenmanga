@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: outfit;
+    src: url('/fonts/Outfit-Regular.ttf');
+}
+@font-face {
+    font-family: playfair;
+    src: url('/fonts/play.ttf');
+}
+@font-face {
+    font-family: fira;
+    src: url('/fonts/fira.ttf');
+}
+@font-face {
+    font-family: akira;
+    src: url('/fonts/akira.otf');
+}
+@theme{
+    --font-outfit : outfit, 'sans-serif';
+    --font-playfair : playfair, 'sans-serif';
+    --font-fira : fira, 'sans-serif';
+    --font-akira : akira, 'sans-serif'
+}
+

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import MangaData from '../../public/MangaData';
+import Navbar from './Navbar';
+import { Outlet } from 'react-router';
+import Footer from './Footer';
+import DataContext from './DataContext';
+
 const RootLayout = () => {
+    const [faviourite, setFaviourite] = useState([1])
+    const [cartItem, setCartItem] = useState([1,4,4])
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -11,18 +17,13 @@ const RootLayout = () => {
         fetchData()
     }, [])
     return (
-        <div className='grid grid-cols-5 px-[5%] py-[5%] gap-3'>
-            {data.map(item=>(
-                <div className='p-3 border' key={item.id}>
-                    <div>
-                        <img src={item.image} alt="" />
-                    </div>
-                    <div>
-                        <p>{item.title}</p>
-                        <p>{item.author.name}</p>
-                    </div>
-                </div>
-            ))}
+        <div className='flex items-center justify-between min-h-screen flex-col bg-[#302f2b] text-white font-fira'>
+            <DataContext value={{faviourite, setFaviourite, cartItem, setCartItem, data}}>
+                <Navbar />
+                <Outlet />
+                <Footer />
+            </DataContext>
+
         </div>
     );
 };
