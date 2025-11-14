@@ -8,6 +8,7 @@ import Error from "../components/Error";
 import MangaDetails from "../components/MangaDetails";
 import Faviourties from "../components/Faviourties";
 import CartSection from "../components/CartSection";
+import TagsManga from "../components/TagsManga";
 
 const route = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const route = createBrowserRouter([
         {
             path: 'all-manga/:name',
             element: <MangaDetails/>
+        },
+        {
+            path: 'all-manga/tags/:name',
+            element: <TagsManga/>
         },
         {
             path:'faviourite',
