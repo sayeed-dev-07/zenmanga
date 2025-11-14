@@ -5,8 +5,8 @@ import Footer from './Footer';
 import DataContext from './DataContext';
 
 const RootLayout = () => {
-    const [faviourite, setFaviourite] = useState([1])
-    const [cartItem, setCartItem] = useState([1,4,4])
+    const [faviourite, setFaviourite] = useState([])
+    const [cartItem, setCartItem] = useState([])
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {

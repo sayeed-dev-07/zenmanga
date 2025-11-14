@@ -1,5 +1,6 @@
 @import "tailwindcss";
-
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 @font-face {
     font-family: outfit;
     src: url('/fonts/Outfit-Regular.ttf');
@@ -16,10 +17,10 @@
     font-family: akira;
     src: url('/fonts/akira.otf');
 }
+
 @theme{
     --font-outfit : outfit, 'sans-serif';
     --font-playfair : playfair, 'sans-serif';
     --font-fira : fira, 'sans-serif';
     --font-akira : akira, 'sans-serif'
 }
-
