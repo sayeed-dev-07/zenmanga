@@ -49,3 +49,15 @@
         transform: rotate(360deg);
     }
 }
+.slick-slide {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.slick-slide > div {
+  width: 100% !important;
+}
+
+.slick-list {
+  padding: 0 !important;
+}

@@ -1,42 +1,59 @@
-import React from 'react';
-import CarousalCards from './CarousalCards';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import Slider from "react-slick";
+import { Navigation } from "swiper/modules";
+import CarousalCards from "./CarousalCards";
 
 const Carousal = ({ data }) => {
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1465,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 770,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 0
-        }
-      }
-    ]
-  };
   return (
-    <div className='slider-container my-12 w-[90vw] lg:w-[80vw] px-[2%] md:px-[5%] lg:px-[10%]'>
-      <Slider {...settings}>
-        {data.map(item => <CarousalCards key={item.id} card={item} />)}
-      </Slider>
+    <div className="w-full max-w-[90vw] lg:max-w-[85vw] xl:max-w-[80vw] mx-auto my-12 px-2 sm:px-4">
+      <Swiper 
+        className="px-2"
+        modules={[Navigation]}
+        spaceBetween={20}
+        loop={true}
+        navigation={true}
+        breakpoints={{
+          320: { 
+            slidesPerView: 1,
+            spaceBetween: 15
+          },
+          480: { 
+            slidesPerView: 1,
+            spaceBetween: 15
+          },
+          640: { 
+            slidesPerView: 1,
+            spaceBetween: 20
+          },     
+          768: { 
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 25
+          },    
+          1280: { 
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          1536: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          }
+        }}
+      >
+        {data.map((item) => (
+          <SwiperSlide key={item.id}>
+            <CarousalCards card={item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      
     </div>
   );
 };

@@ -33,10 +33,10 @@ const Home = () => {
                 <p class="mb-3">
                     Pick any three unique mangas and unlock a special 20% off your total. The more variety you explore, the more you save — start building your perfect trio!
                 </p>
-                <a href="/all-manga"
+                <Link to="/all-manga"
                     class="px-6 py-3 bg-black text-white rounded-full inline-block">
                     SHOP NOW
-                </a>
+                </Link>
 
             </div>
 
