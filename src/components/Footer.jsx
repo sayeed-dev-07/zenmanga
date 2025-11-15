@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterTop from './FooterTop';
 import { Facebook, Linkedin, LinkedinIcon, TwitterIcon, YoutubeIcon } from 'lucide-react';
+import FooterBottom from './FooterBottom';
 
 const Footer = () => {
     return (
@@ -51,7 +52,9 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+                <FooterBottom/>
             </div>
+            
         </div>
     );
 };
