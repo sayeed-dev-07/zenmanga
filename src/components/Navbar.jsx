@@ -1,6 +1,6 @@
 import { Heart, ShoppingCartIcon } from 'lucide-react';
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import DataContext from './DataContext';
 import Marquee from "react-fast-marquee";
 
@@ -27,13 +27,21 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='text-xl shadow-xl sm:text-3xl bg-[#e9c46a] text-black py-3 font-akira'>
-                <Marquee speed={50} delay={0.3} gradient={false}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enjoy free shipping on orders over $25 — plus get 30% off when you buy any 3 products together !</Marquee>
+                <Marquee speed={50} delay={0.3} gradient={false}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enjoy free shipping on orders over $25 — plus get 30% off when you buy  3 different products together !</Marquee>
             </div>
-            <div className='flex items-center justify-between text-xl md:text-3xl mx-[2%] text-[#efece3] md:mx-[5%] lg:mx-[10%] py-6 font-akira border-b-2 flex-wrap gap-y-3 gap-x-2'>
-                <Link className='hover:text-[#eb5e28]' to='/'>Home</Link>
-                <Link className='hover:text-[#eb5e28]' to='all-manga'>All Mangas</Link>
-                <Link className='hover:text-[#eb5e28]' to='best-sell'>Best Sell</Link>
-                <Link className='hover:text-[#eb5e28]' to='new-arrival'>New Arrival</Link>
+            <div className='flex items-center justify-between text-lg md:text-3xl mx-[2%] text-[#efece3] md:mx-[5%] lg:mx-[10%] py-6 font-akira  border-b-2 flex-wrap gap-y-3 gap-x-2'>
+                <NavLink className={({isActive})=>
+                    isActive ? 'text-[#2a9d8f]' : 'text-[#efece3]'
+                } to='/'>Home</NavLink>
+                <NavLink className={({isActive})=>
+                    isActive ? 'text-[#2a9d8f]' : 'text-[#efece3]'
+                } to='all-manga'>All Mangas</NavLink>
+                <NavLink className={({isActive})=>
+                    isActive ? 'text-[#2a9d8f]' : 'text-[#efece3]'
+                } to='best-sell'>Best Sell</NavLink>
+                <NavLink className={({isActive})=>
+                    isActive ? 'text-[#2a9d8f]' : 'text-[#efece3]'
+                } to='new-arrival'>New Arrival</NavLink>
 
             </div>
         </div>

@@ -1,26 +1,51 @@
 @import "tailwindcss";
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
+
 @font-face {
     font-family: outfit;
     src: url('/fonts/Outfit-Regular.ttf');
 }
+
 @font-face {
     font-family: playfair;
     src: url('/fonts/play.ttf');
 }
+
 @font-face {
     font-family: fira;
     src: url('/fonts/fira.ttf');
 }
+
 @font-face {
     font-family: akira;
     src: url('/fonts/akira.otf');
 }
 
-@theme{
-    --font-outfit : outfit, 'sans-serif';
-    --font-playfair : playfair, 'sans-serif';
-    --font-fira : fira, 'sans-serif';
-    --font-akira : akira, 'sans-serif'
+@theme {
+    --font-outfit: outfit, 'sans-serif';
+    --font-playfair: playfair, 'sans-serif';
+    --font-fira: fira, 'sans-serif';
+    --font-akira: akira, 'sans-serif'
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

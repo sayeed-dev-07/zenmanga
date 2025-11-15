@@ -6,25 +6,33 @@ import DataContext from './DataContext';
 
 const CartCard = ({ card }) => {
   const { setCartItem } = useContext(DataContext);
-  const qty = card.qty || 1;
+  function handlePlus() {
 
-  const handlePlus = () => {
-    setCartItem(prev => prev.map(it => it.id === card.id ? { ...it, qty: (it.qty || 1) + 1 } : it));
-  };
+    setCartItem(prevCart => {
+      return prevCart.map(item => {
+        const isSameItem = item.id == card.id;
 
-  const handleMinus = () => {
-    if (qty <= 1) {
-      // delete item
-      setCartItem(prev => prev.filter(it => it.id !== card.id));
-    } else {
-      setCartItem(prev => prev.map(it => it.id === card.id ? { ...it, qty: it.qty - 1 } : it));
-    }
-  };
+        if (isSameItem) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
 
-  const handleDelete = () => {
-    setCartItem(prev => prev.filter(it => it.id !== card.id));
-  };
+        return item;
+      });
+    });
 
+  }
+  function handleMinus() {
+      if (card.quantity <= 1) {
+        setCartItem(prev => prev.filter(item=> item.id != card.id))
+      }else{
+        setCartItem(prev => prev.map(item=>
+          item.id == card.id ? {...item, quantity: (item.quantity - 1)} : item
+        ))
+      }
+  }
+  function handleDelete() {
+       setCartItem(prev => prev.filter(it => it.id !== card.id));
+  }
   return (
     <div className='flex w-full flex-col pb-6 sm:pb-0 md:flex-row items-center justify-between border-2 gap-y-6 pr-6'>
       <div className='flex items-center w-full sm:w-[30%] gap-x-6 '>
@@ -42,16 +50,16 @@ const CartCard = ({ card }) => {
         <div>
           <div className='flex items-center justify-center border-2 border-[#eb5e28] rounded-md'>
             <div onClick={handleMinus} className='p-2 cursor-pointer bg-[#eb5e28]'>
-              { qty === 1 ? <MdDelete /> : <FaMinus /> }
+              {card.quantity === 1 ? <MdDelete /> : <FaMinus />}
             </div>
-            <p className='px-4'>{qty}</p>
+            <p className='px-4'>{card.quantity}</p>
             <div onClick={handlePlus} className='p-2 cursor-pointer bg-[#eb5e28]'>
               <FaPlus />
             </div>
           </div>
         </div>
 
-        <p>$ {(card.price * qty).toFixed(2)}</p>
+        <p>$ {(card.price * card.quantity).toFixed(2)}</p>
       </div>
 
       <div>

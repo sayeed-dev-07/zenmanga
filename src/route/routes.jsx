@@ -31,7 +31,7 @@ const route = createBrowserRouter([
             element: <AllManga />
         },
         {
-            path: 'all-manga/:name',
+            path: 'all-manga/:id',
             element: <MangaDetails/>
         },
         {

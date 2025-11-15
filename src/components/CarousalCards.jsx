@@ -5,7 +5,7 @@ import DataContext from './DataContext';
 import TagsButton from './TagsButton';
 
 const CarousalCards = ({ card }) => {
-    const { setFaviourite, faviourite, cartItem, setCartItem, subTotal, setSubTotal, total, setTotal, discount, setDiscount, setShipping, shipping } = useContext(DataContext);
+    const { setFaviourite, faviourite, cartItem, setCartItem } = useContext(DataContext);
 
     // derive clicked from global favourites
     const clicked = faviourite.some(item => item.id === card.id);
@@ -22,15 +22,10 @@ const CarousalCards = ({ card }) => {
     }
     
     const handleClickCart = () => {
-        setCartItem(prev => {
-            const exists = prev.find(it => it.id === card.id);
-            if (exists) {
-                
-                return prev.map(it => it.id === card.id ? { ...it, qty: (it.qty || 1) + 1 } : it);
-            } else {
-                return [...prev, { ...card, qty: 1 }];
-            }
-        });
+        let exits = clicked2;
+        if (!exits) {
+            setCartItem(prev => [...prev, {...card, quantity : 1}])
+        }
     };
 
 
@@ -80,7 +75,7 @@ const CarousalCards = ({ card }) => {
                     </div>
                 </div>
 
-                <Link className="px-4 py-3 uppercase text-xs font-semibold  bg-[#e63946] text-white rounded-md" to={`/all-manga/${card.id}`}>
+                <Link className="py-2 uppercase text-base font-semibold mt-1 bg-[#e63946] text-white rounded-md tracking-[0.1rem]" to={`/all-manga/${card.id}`}>
                     Info
                 </Link>
             </div>
