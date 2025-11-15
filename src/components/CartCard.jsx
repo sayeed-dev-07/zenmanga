@@ -26,12 +26,12 @@ const CartCard = ({ card }) => {
   };
 
   return (
-    <div className='flex w-full flex-col py-6 md:flex-row items-center justify-between border-2 gap-y-6 pr-6'>
-      <div className='flex items-center gap-x-6 '>
+    <div className='flex w-full flex-col pb-6 sm:pb-0 md:flex-row items-center justify-between border-2 gap-y-6 pr-6'>
+      <div className='flex items-center w-full sm:w-[30%] gap-x-6 '>
         <div className='w-[120px]'>
-          <img className='w-full' src={card.image} alt="" />
+          <img className='w-full h-full' src={card.image} alt="" />
         </div>
-        <div>
+        <div className=''>
           <p className='text-2xl font-semibold'>{card.title}</p>
           <p className='text-xl'>Volume {card.vol}</p>
         </div>
