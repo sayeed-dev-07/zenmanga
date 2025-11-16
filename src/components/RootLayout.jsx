@@ -6,6 +6,7 @@ import DataContext from './DataContext';
 import useLocalStorage from './localStorage';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BackButton from './BackButton';
 
 
 const RootLayout = () => {
@@ -66,7 +67,11 @@ const RootLayout = () => {
     return (
         <>
          <ToastContainer autoClose={2000}/>
-        <div className='flex items-center justify-between min-h-screen flex-col bg-[#302f2b] text-white font-fira'>
+         
+        <div className='flex items-center justify-between min-h-screen flex-col bg-[#302f2b] text-white font-fira relative'>
+            <div className='fixed left-[5%] bottom-[5%]'>
+                <BackButton/>
+            </div>
             <DataContext
                 value={{
                     faviourite, setFaviourite,
