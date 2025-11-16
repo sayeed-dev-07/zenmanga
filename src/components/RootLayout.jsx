@@ -3,19 +3,24 @@ import Navbar from './Navbar';
 import { Outlet } from 'react-router';
 import Footer from './Footer';
 import DataContext from './DataContext';
+import useLocalStorage from './localStorage';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const RootLayout = () => {
-    const [faviourite, setFaviourite] = useState([]);
-    const [loader, setLoader] = useState(false)
-    const [cartItem, setCartItem] = useState([]);
+    const [faviourite, setFaviourite] = useLocalStorage("favourite", []);
+    const [cartItem, setCartItem] = useLocalStorage("cart", []);
+
+    const [data, setData] = useState([]);
+    const [tags, setTags] = useState([]);
 
     const [subTotal, setSubTotal] = useState(0);
     const [discount, setDiscount] = useState(0);
     const [shipping, setShipping] = useState(5);
     const [total, setTotal] = useState(0);
 
-    const [data, setData] = useState([]);
-    const [tags, setTags] = useState([]);
+    const [loader, setLoader] = useState(false);
 
 
     useEffect(() => {
@@ -59,6 +64,8 @@ const RootLayout = () => {
 
 
     return (
+        <>
+         <ToastContainer autoClose={2000}/>
         <div className='flex items-center justify-between min-h-screen flex-col bg-[#302f2b] text-white font-fira'>
             <DataContext
                 value={{
@@ -76,6 +83,7 @@ const RootLayout = () => {
                 <Footer />
             </DataContext>
         </div>
+        </>
     );
 };
 

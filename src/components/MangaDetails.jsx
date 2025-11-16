@@ -5,6 +5,7 @@ import TagsButton from './TagsButton';
 import { FaLanguage, FaRegFile } from 'react-icons/fa';
 import { PiBuildingOffice } from 'react-icons/pi';
 import { RiBarcodeLine } from 'react-icons/ri';
+import { toast } from "react-toastify";
 
 const MangaDetails = () => {
     const { id } = useParams()
@@ -15,7 +16,10 @@ const MangaDetails = () => {
     const handleClickCart = () => {
         let exits = clicked2;
         if (!exits) {
+             toast(`${cardData.title} added to cart`)
             setCartItem(prev => [...prev, { ...cardData, quantity: 1 }])
+        }else{
+            toast.error(`${cardData.title} is already added to the cart`)
         }
     };
     function handleClickFav() {

@@ -9,7 +9,7 @@ const BestSell = () => {
     const [curPage, setCurPage] = useState(1)
     const [postPerPage, setPostPerPage] = useState(8)
     const totalPostLen = filterArr.length;
-    console.log(totalPostLen);
+
     const lastPostIndex = curPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage
     const currData = filterArr.slice(firstPostIndex, lastPostIndex)

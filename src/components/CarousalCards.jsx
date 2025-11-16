@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { MdFavoriteBorder } from 'react-icons/md';
+import React, { useContext } from 'react';
+import { toast } from "react-toastify";
 import { Link } from 'react-router';
 import DataContext from './DataContext';
 import TagsButton from './TagsButton';
+import { BsCart } from 'react-icons/bs';
+import { ShoppingCart } from 'lucide-react';
 
 const CarousalCards = ({ card }) => {
     const { setFaviourite, faviourite, cartItem, setCartItem } = useContext(DataContext);
@@ -20,11 +22,14 @@ const CarousalCards = ({ card }) => {
             setFaviourite(prev => [...prev, card]);
         }
     }
-    
+
     const handleClickCart = () => {
         let exits = clicked2;
         if (!exits) {
-            setCartItem(prev => [...prev, {...card, quantity : 1}])
+            toast(`${card.title} added to cart`)
+            setCartItem(prev => [...prev, { ...card, quantity: 1 }])
+        }else{
+            toast.error(`${card.title} is already added to the cart`)
         }
     };
 
@@ -48,10 +53,22 @@ const CarousalCards = ({ card }) => {
                     }
                 </div>
                 <div className="flex items-center justify-between gap-3 mt-3">
-                    <button onClick={handleClickCart} className={`px-4 py-2 cursor-pointer ${clicked2 ? 'bg-amber-500' : ''} bg-[#e9c46a] text-black rounded-lg`}>{`${clicked2 ? 'Added to Cart' : 'Add to Cart'}`}</button>
+                    <button
+                        onClick={handleClickCart}
+                            className={`px-4 py-2 cursor-pointer ${clicked2 ? 'bg-[#bc4749] text-white' : 'bg-[#e9c46a]'} text-[#413f3f] rounded-lg flex items-center gap-2`}
+                    >
+                        {!clicked2 ? (
+                            <>
+                                <ShoppingCart size={20}/> Add to Cart
+                            </>
+                        ) : (
+                            "Added to Cart"
+                        )}
+                    </button>
+
 
                     <div onClick={handleClickFav} className="relative group w-6 h-6 cursor-pointer">
-                        
+
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -63,7 +80,7 @@ const CarousalCards = ({ card }) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
 
-                        
+
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="crimson"
