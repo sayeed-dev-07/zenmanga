@@ -7,13 +7,14 @@ import { PiBuildingOffice } from 'react-icons/pi';
 import { RiBarcodeLine } from 'react-icons/ri';
 import { toast } from "react-toastify";
 import { motion } from 'motion/react';
+import { ShoppingCart } from 'lucide-react';
 
 
 const MangaDetails = () => {
     const { id } = useParams()
     const { data, cartItem, setCartItem, setFaviourite, faviourite } = useContext(DataContext)
     const [cardData, setCardData] = useState(null);
-    
+
     useEffect(() => {
         // Wait for data to load and find the card
         if (data && data.length > 0) {
@@ -24,10 +25,10 @@ const MangaDetails = () => {
 
     const clicked2 = cardData ? cartItem.some(item => item.id === cardData.id) : false;
     const clicked = cardData ? faviourite.some(item => item.id === cardData.id) : false;
-    
+
     const handleClickCart = () => {
         if (!cardData) return;
-        
+
         let exits = clicked2;
         if (!exits) {
             toast(`${cardData.title} added to cart`)
@@ -36,10 +37,10 @@ const MangaDetails = () => {
             toast.error(`${cardData.title} is already added to the cart`)
         }
     };
-    
+
     function handleClickFav() {
         if (!cardData) return;
-        
+
         const exists = clicked;
 
         if (exists) {
@@ -57,12 +58,12 @@ const MangaDetails = () => {
             </div>
         );
     }
-    
+
     return (
         <div className='font-fira px-[2%] md:px-[5%] lg:px-[10%] my-6'>
 
             <div className='gap-x-12 flex flex-col md:flex-row gap-y-3 overflow-hidden'>
-                <motion.div  className='min-w-[300px] lg:min-w-[350px]'>
+                <motion.div className='min-w-[300px] lg:min-w-[350px]'>
                     <motion.img layoutId={cardData?.id ? `${id}-img` : undefined} className='w-full h-auto' src={cardData.image} alt={cardData.title} />
                 </motion.div>
                 <motion.div initial={{
@@ -74,7 +75,7 @@ const MangaDetails = () => {
                     x: 0,
                     filter: 'blur(0px)'
                 }} transition={{
-                    delay:0.4,
+                    delay: 0.4,
                     duration: 0.3,
                     type: "spring",
                     stiffness: 120,
@@ -98,7 +99,18 @@ const MangaDetails = () => {
                         <div className='flex items-center gap-x-6'>
                             <p className='text-3xl font-akira'>${cardData.price}</p>
                             <div>
-                                <button onClick={handleClickCart} className={`px-4 py-2 cursor-pointer ${clicked2 ? 'bg-amber-500' : ''} bg-[#e9c46a] text-black rounded-lg`}>{`${clicked2 ? 'Added to Cart' : 'Add to Cart'}`}</button>
+                                <motion.button
+                                    onClick={handleClickCart}
+                                    className={`px-4 py-2 cursor-pointer ${clicked2 ? 'bg-[#bc4749] text-white' : 'bg-[#e9c46a]'} text-[#413f3f] rounded-lg flex items-center gap-2`}
+                                >
+                                    {!clicked2 ? (
+                                        <>
+                                            <ShoppingCart size={20} /> Add to Cart
+                                        </>
+                                    ) : (
+                                        "Added to Cart"
+                                    )}
+                                </motion.button>
                             </div>
                             <div onClick={handleClickFav} className="relative group w-6 h-6 cursor-pointer">
 
@@ -151,21 +163,21 @@ const MangaDetails = () => {
                 </motion.div>
             </div>
             <motion.div initial={{
-                    opacity: 0,
-                    y: 200,
-                    filter: 'blur(10px)'
-                }} animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: 'blur(0px)'
-                }} transition={{
-                    delay:0.6,
-                    duration: 0.3,
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 15
+                opacity: 0,
+                y: 200,
+                filter: 'blur(10px)'
+            }} animate={{
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)'
+            }} transition={{
+                delay: 0.6,
+                duration: 0.3,
+                type: "spring",
+                stiffness: 120,
+                damping: 15
 
-                }} className='my-3'>
+            }} className='my-3'>
                 <p className='text-3xl font-semibold text-[#2a9d8f]'>Author Introduction</p>
                 <p className='text-xl font-semibold mb-3 text-[#10a4f4]'>{cardData.author.name}</p>
                 <p className='text-lg'>

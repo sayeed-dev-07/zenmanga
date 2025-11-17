@@ -69,7 +69,7 @@ const RootLayout = () => {
          <ToastContainer autoClose={2000}/>
          
         <div className='flex items-center justify-between min-h-screen flex-col bg-[#302f2b] text-white font-fira relative'>
-            <div className='fixed left-[5%] bottom-[5%]'>
+            <div className='fixed z-50 left-[5%] bottom-[5%]'>
                 <BackButton/>
             </div>
             <DataContext

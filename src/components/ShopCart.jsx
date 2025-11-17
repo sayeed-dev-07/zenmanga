@@ -3,7 +3,8 @@ import DataContext from './DataContext';
 import CartCard from './CartCard';
 import { Link } from 'react-router';
 import { toast } from "react-toastify";
-
+import { AnimatePresence, stagger } from 'motion/react';
+import { motion } from 'motion/react';
 
 const ShopCart = () => {
 
@@ -14,15 +15,75 @@ const ShopCart = () => {
         setCartItem([])
     }
 
+    const containerVariants = {
+        hidden: {
+            opacity: 0,
+            y: -40
+        },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.2,
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            x: -100,
+            filter: 'blur(5px)'
+        },
+        show: {
+            opacity: 1,
+            x: 0,
+            filter: 'blur(0px)',
+
+        },
+        exit: {
+            x: 200,
+            opacity: 0,
+            filter: 'blur(5px)',
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        }
+    };
+
     return (
-        <div className='w-full px-[2%] md:px-[5%] lg:px-[10%] my-[2%] flex-wrap mx-auto'>
+        <div className='w-full px-[2%] md:px-[5%] lg:px-[10%] my-[2%] flex-wrap mx-auto overflow-hidden'>
 
             {
                 cartItem.length > 0 ?
-                    <div>
-                        <div className='flex gap-y-2 flex-col w-full'>
-                            {cartItem.map(item => <CartCard card={item} key={item.id} />)}
-                        </div>
+                    <motion.div>
+                        <motion.div
+                            variants={containerVariants}
+                            initial='hidden'
+                            animate='show'
+                            className='flex gap-y-2 flex-col w-full'
+                        >
+                            <AnimatePresence mode="popLayout">
+                                {cartItem.map(item => (
+                                    <motion.div
+                                        layout
+                                        variants={itemVariants}
+                                        key={item.id}
+                                        transition={{
+                                            layout: {
+                                                type: "spring",
+                                                stiffness: 300,
+                                                damping: 30
+                                            }
+                                        }}
+                                    >
+                                        <CartCard card={item} />
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
                         <div className='flex items-center md:justify-end justify-center my-6 md:text-end text-center'>
                             <div className='w-full md:w-[70%] lg:w-[30vw] uppercase text-lg md:text-2xl flex flex-col gap-y-2'>
                                 <div>Subtotal : $<span>{subTotal.toFixed(2)}</span></div>
@@ -40,7 +101,7 @@ const ShopCart = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> :
+                    </motion.div> :
                     <div className='min-h-[60vh] flex items-center justify-center flex-col gap-y-3 text-2xl'>
                         <p className='text-2xl'>
                             Nothing Added To cart

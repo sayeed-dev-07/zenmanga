@@ -56,7 +56,7 @@ const CarousalCards = ({ card }) => {
 
             <div className="text-center w-full flex flex-col gap-y-2 font-fira py-3">
 
-                <motion.p layoutId={`${card.id}-title`} className="text-2xl font-semibold">{card.id}</motion.p>
+                <motion.p layoutId={`${card.id}-title`} className="text-2xl font-semibold">{card.title}</motion.p>
                 <motion.p layoutId={`${card.id}-volume`}>Volume {card.vol}</motion.p>
                 <motion.p layoutId={`${card.id}-price`} className="font-semibold text-2xl">$ {card.price}</motion.p>
                 <motion.div layoutId={`${card.id}-tags`} className='flex flex-wrap gap-3'>
