@@ -46,7 +46,7 @@ const CarousalCards = ({ card }) => {
         <div className="p-2 sm:p-6 border-2 md:border-4 mx-3 min-w-[250px] sm:min-w-[300px] border-white rounded-md flex flex-col items-center justify-between">
 
             <div className="h-[350px] w-full">
-                <motion.img 
+                <motion.img transition={{duration:0.5}}
                     layoutId={card?.id ? `${card.id}-img` : undefined}
                     className="h-full w-full" 
                     src={card.image} 

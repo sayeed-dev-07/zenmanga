@@ -3,7 +3,7 @@ import DataContext from './DataContext';
 import CartCard from './CartCard';
 import { Link } from 'react-router';
 import { toast } from "react-toastify";
-import { AnimatePresence, stagger } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { motion } from 'motion/react';
 
 const ShopCart = () => {
@@ -18,11 +18,11 @@ const ShopCart = () => {
     const containerVariants = {
         hidden: {
             opacity: 0,
-            y: -40
+            x: -40
         },
         show: {
             opacity: 1,
-            y: 0,
+            x: 0,
             transition: {
                 delayChildren: 0.3,
                 staggerChildren: 0.2,
@@ -34,7 +34,10 @@ const ShopCart = () => {
         hidden: {
             opacity: 0,
             x: -100,
-            filter: 'blur(5px)'
+            filter: 'blur(5px)',
+            transition: {
+                duration : 0.5
+            }
         },
         show: {
             opacity: 1,
@@ -43,12 +46,12 @@ const ShopCart = () => {
 
         },
         exit: {
-            x: 200,
+            x: 100,
             opacity: 0,
             filter: 'blur(5px)',
             transition: {
-                duration: 0.3,
-                ease: "easeInOut"
+                duration: 0.5,
+                type:'spring'
             }
         }
     };
@@ -63,13 +66,16 @@ const ShopCart = () => {
                             variants={containerVariants}
                             initial='hidden'
                             animate='show'
-                            className='flex gap-y-2 flex-col w-full'
+                            className='flex gap-y-2 flex-col overflow-hidden w-full'
                         >
                             <AnimatePresence mode="popLayout">
                                 {cartItem.map(item => (
                                     <motion.div
                                         layout
                                         variants={itemVariants}
+                                        initial="hidden"
+                                        animate="show"
+                                        exit="exit"
                                         key={item.id}
                                         transition={{
                                             layout: {

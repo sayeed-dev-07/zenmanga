@@ -64,7 +64,7 @@ const MangaDetails = () => {
 
             <div className='gap-x-12 flex flex-col md:flex-row gap-y-3 overflow-hidden'>
                 <motion.div className='min-w-[300px] lg:min-w-[350px]'>
-                    <motion.img layoutId={cardData?.id ? `${id}-img` : undefined} className='w-full h-auto' src={cardData.image} alt={cardData.title} />
+                    <motion.img transition={{duration:0.5}} layoutId={cardData?.id ? `${id}-img` : undefined} className='w-full h-auto' src={cardData.image} alt={cardData.title} />
                 </motion.div>
                 <motion.div initial={{
                     opacity: 0,
